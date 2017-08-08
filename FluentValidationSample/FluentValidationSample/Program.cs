@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using FluentValidation.Results;
 
 namespace FluentValidationSample
 {
@@ -6,7 +8,13 @@ namespace FluentValidationSample
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var customer = new Customer();
+
+            var validator = new CustomerValidator();
+            var results = validator.Validate(customer);
+
+            var validationSucceeded = results.IsValid;
+            var failures = results.Errors;
         }
     }
 }
